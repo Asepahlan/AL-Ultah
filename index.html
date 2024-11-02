@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teka-Teki Ulang Tahun</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            background-color: #ffd6e7;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .birthday-image {
+            max-width: 300px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 42px);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ff69b4;
+            animation: fall 3s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        .celebrate {
+            animation: bounce 1s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="background-music" loop autoplay>
+        <source src="https://www.soundjay.com/button/sounds/button-3.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    
+    <div class="container">
+        <h1 class="celebrate">🎈 Teka-Teki Ulang Tahun 🎈</h1>
+
+        <div id="riddle">
+            <h3>Jawab teka-teki ini untuk melihat kejutan!</h3>
+            <p>Aku selalu bertambah tapi tidak pernah berkurang.<br> Setiap orang memiliki aku.<br> Apa aku?</p>
+            <input type="text" id="answer" placeholder="Jawabanmu...">
+            <button onclick="checkAnswer()">Cek Jawaban</button>
+        </div>
+
+        <div id="surprise" class="hidden">
+            <h2 class="celebrate">🎉 Selamat Ulang Tahun! 🎉</h2>
+            <img src="https://media.giphy.com/media/g5R9dok94mrIvplmZd/giphy.gif" class="birthday-image" alt="Birthday GIF">
+            <img src="img/asep.png" class="birthday-image" alt="Asep">
+            <p>Semoga panjang umur dan bahagia selalu! 🎂</p>
+            <button onclick="playAgain()">Main Lagi</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value.toLowerCase();
+            if (answer === 'umur' || answer === 'usia') {
+                document.getElementById('riddle').classList.add('hidden');
+                document.getElementById('surprise').classList.remove('hidden');
+                createConfetti();
+            } else {
+                alert('Ups, coba lagi ya! 😉');
+            }
+        }
+
+        function playAgain() {
+            document.getElementById('surprise').classList.add('hidden');
+            document.getElementById('riddle').classList.remove('hidden');
+            document.getElementById('answer').value = '';
+            document.querySelectorAll('.confetti').forEach(confetti => confetti.remove());
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => { confetti.remove(); }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
