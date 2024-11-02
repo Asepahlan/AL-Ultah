@@ -1,144 +1,283 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teka-Teki Ulang Tahun</title>
+    <title>Teka-Teki Romantis</title>
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            background-color: #ffd6e7;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            min-height: 100vh;
+            margin: 0;
             padding: 20px;
+            position: relative;
             overflow: hidden;
         }
-
+        
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
         }
-
+        
         .hidden {
             display: none;
         }
-
-        .birthday-image {
+        
+        .love-image {
             max-width: 300px;
             margin: 20px auto;
             border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-
+        
+        .floating-hearts {
+            position: absolute;
+            font-size: 24px;
+            animation: float 6s linear infinite;
+            opacity: 0;
+        }
+        
         button {
-            padding: 10px 20px;
-            background-color: #ff69b4;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff4b6b, #ff6b6b);
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             color: white;
             cursor: pointer;
             margin: 10px;
-            transition: background-color 0.3s;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
+        
         button:hover {
-            background-color: #ff1493;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
-
+        
         input {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: calc(100% - 42px);
+            padding: 12px 20px;
+            margin: 15px;
+            border-radius: 25px;
+            border: 2px solid #ff6b6b;
+            width: 250px;
+            font-size: 16px;
+            outline: none;
         }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #ff69b4;
-            animation: fall 3s linear infinite;
-            z-index: 0;
+        
+        .riddle-container {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
         }
-
-        @keyframes fall {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
+        
+        .heart-beat {
+            animation: heartBeat 1.5s infinite;
         }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-30px); }
-            60% { transform: translateY(-15px); }
+        
+        .message-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: none;
         }
-
-        .celebrate {
-            animation: bounce 1s infinite;
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.3);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.3);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+        
+        .typing-effect {
+            border-right: 3px solid;
+            animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            from {
+                width: 0
+            }
+            to {
+                width: 100%
+            }
+        }
+        
+        @keyframes blink {
+            from,
+            to {
+                border-color: transparent
+            }
+            50% {
+                border-color: #ff6b6b;
+            }
         }
     </style>
 </head>
 
 <body>
-    <audio id="background-music" loop autoplay>
-        <source src="https://www.soundjay.com/button/sounds/button-3.mp3" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio>
-    
     <div class="container">
-        <h1 class="celebrate">🎈 Teka-Teki Ulang Tahun 🎈</h1>
+        <h1>💝 Teka-Teki Cinta 💝</h1>
 
-        <div id="riddle">
-            <h3>Jawab teka-teki ini untuk melihat kejutan!</h3>
-            <p>Aku selalu bertambah tapi tidak pernah berkurang.<br> Setiap orang memiliki aku.<br> Apa aku?</p>
-            <input type="text" id="answer" placeholder="Jawabanmu...">
-            <button onclick="checkAnswer()">Cek Jawaban</button>
+        <div id="riddles">
+            <div class="riddle-container" id="riddle1">
+                <h3 class="typing-effect">Teka-teki #1</h3>
+                <p>Semakin dibagi, semakin bertambah.<br> Tak bisa dilihat, tapi bisa dirasakan.<br> Apa itu?</p>
+                <input type="text" id="answer1" placeholder="Jawaban pertama...">
+                <button onclick="checkAnswer(1)">💕 Jawab</button>
+            </div>
+
+            <div class="riddle-container hidden" id="riddle2">
+                <h3>Teka-teki #2</h3>
+                <p>Aku selalu ada di awal "Rindu"<br> Dan di akhir "Sayang"<br> Huruf apa aku?</p>
+                <input type="text" id="answer2" placeholder="Jawaban kedua...">
+                <button onclick="checkAnswer(2)">💕 Jawab</button>
+            </div>
+
+            <div class="riddle-container hidden" id="riddle3">
+                <h3>Teka-teki Terakhir</h3>
+                <p>Jika kamu adalah bintang<br> Aku adalah _____</p>
+                <input type="text" id="answer3" placeholder="Jawaban terakhir...">
+                <button onclick="checkAnswer(3)">💕 Jawab</button>
+            </div>
         </div>
 
         <div id="surprise" class="hidden">
-            <h2 class="celebrate">🎉 Selamat Ulang Tahun! 🎉</h2>
-            <img src="https://media.giphy.com/media/g5R9dok94mrIvplmZd/giphy.gif" class="birthday-image" alt="Birthday GIF">
-            <img src="img/asep.png" class="birthday-image" alt="Asep">
-            <p>Semoga panjang umur dan bahagia selalu! 🎂</p>
-            <button onclick="playAgain()">Main Lagi</button>
+            <h2 class="heart-beat">❤️ Aku Sayang Kamu! ❤️</h2>
+            <img src="https://media.giphy.com/media/LnKM6jbBenbVXp1qA9/giphy.gif" class="love-image">
+            <p id="love-message" class="typing-effect"></p>
+            <button onclick="playAgain()">💝 Main Lagi</button>
         </div>
     </div>
 
     <script>
-        function checkAnswer() {
-            const answer = document.getElementById('answer').value.toLowerCase();
-            if (answer === 'umur' || answer === 'usia') {
-                document.getElementById('riddle').classList.add('hidden');
-                document.getElementById('surprise').classList.remove('hidden');
-                createConfetti();
+        const loveMessages = [
+            "Kamu adalah bintang yang menerangi hidupku...",
+            "Setiap detik bersamamu adalah hadiah terindah...",
+            "Cintaku padamu seperti π, tak terhingga...",
+            "Kamu sempurna dengan segala kekuranganmu..."
+        ];
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('floating-hearts');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 6 + 3) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createFloatingHeart, 300);
+
+        function checkAnswer(level) {
+            const answer = document.getElementById(`answer${level}`).value.toLowerCase();
+            let correct = false;
+
+            switch (level) {
+                case 1:
+                    correct = answer === 'cinta' || answer === 'kasih sayang';
+                    break;
+                case 2:
+                    correct = answer === 'r' || answer === 'g';
+                    break;
+                case 3:
+                    correct = answer === 'langit' || answer === 'malam';
+                    break;
+            }
+
+            if (correct) {
+                if (level < 3) {
+                    document.getElementById(`riddle${level}`).classList.add('hidden');
+                    document.getElementById(`riddle${level+1}`).classList.remove('hidden');
+                    playSuccessSound();
+                } else {
+                    showFinalSurprise();
+                }
             } else {
-                alert('Ups, coba lagi ya! 😉');
+                showLoveHint(level);
+            }
+        }
+
+        function showLoveHint(level) {
+            const hints = {
+                1: "Hint: Sesuatu yang tumbuh saat dibagikan ke orang lain...",
+                2: "Hint: Perhatikan huruf pertama dan terakhir...",
+                3: "Hint: Tempat bintang berada..."
+            };
+
+            alert(hints[level]);
+        }
+
+        function showFinalSurprise() {
+            document.getElementById('riddles').classList.add('hidden');
+            document.getElementById('surprise').classList.remove('hidden');
+            document.getElementById('love-message').textContent =
+                loveMessages[Math.floor(Math.random() * loveMessages.length)];
+
+            // Tambahan efek confetti
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createFloatingHeart, i * 50);
             }
         }
 
         function playAgain() {
             document.getElementById('surprise').classList.add('hidden');
-            document.getElementById('riddle').classList.remove('hidden');
-            document.getElementById('answer').value = '';
-            document.querySelectorAll('.confetti').forEach(confetti => confetti.remove());
+            document.getElementById('riddles').classList.remove('hidden');
+            document.getElementById('riddle1').classList.remove('hidden');
+            document.getElementById('riddle2').classList.add('hidden');
+            document.getElementById('riddle3').classList.add('hidden');
+
+            // Reset semua jawaban
+            document.getElementById('answer1').value = '';
+            document.getElementById('answer2').value = '';
+            document.getElementById('answer3').value = '';
         }
 
-        function createConfetti() {
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => { confetti.remove(); }, 3000);
-            }
+        // Background music (opsional)
+        function playBackgroundMusic() {
+            const audio = new Audio('URL_LAGU_ROMANTIS');
+            audio.loop = true;
+            audio.volume = 0.3;
+            audio.play();
         }
+
+        // Uncomment baris di bawah jika ingin menambahkan musik
+        // document.body.addEventListener('click', playBackgroundMusic, { once: true });
     </script>
 </body>
+
 </html>
