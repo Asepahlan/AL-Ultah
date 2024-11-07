@@ -48,7 +48,8 @@
             margin: 0;
             padding: 20px;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         
         .container {
@@ -58,6 +59,8 @@
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
         }
         
         .hidden {
@@ -391,6 +394,7 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
+            overflow-y: auto;
         }
         
         .media-container {
@@ -400,6 +404,8 @@
             gap: 20px;
             margin: 20px auto;
             flex-wrap: wrap;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         .love-image {
@@ -792,6 +798,7 @@
 
 
 
+
                 <input type="text" id="answer4" placeholder="Jawaban keempat...">
 
 
@@ -904,7 +911,9 @@
 
 
 
+
                 <input type="text" id="answer5" placeholder="Jawaban kelima...">
+
 
 
 
@@ -2246,6 +2255,7 @@
 
 
                 <button onclick="closeCustomAlert()">Coba Lagi</button>
+
 
 
 
