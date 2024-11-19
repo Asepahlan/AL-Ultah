@@ -1,49 +1,15 @@
 <!DOCTYPE html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <head>
-
-
-
-
-
-
-
-    <title>Teka-Teki Romantis</title>
-
-
-
-
-
-
-
+    <title>Kado</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            background: #f5f5f5;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
@@ -55,7 +21,7 @@
         .container {
             max-width: 800px;
             margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: white;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
@@ -83,7 +49,7 @@
         
         button {
             padding: 12px 25px;
-            background: linear-gradient(45deg, #ff4b6b, #ff6b6b);
+            background: #333;
             border: none;
             border-radius: 25px;
             color: white;
@@ -95,21 +61,21 @@
         
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         input {
             padding: 12px 20px;
             margin: 15px;
             border-radius: 25px;
-            border: 2px solid #ff6b6b;
+            border: 2px solid #333;
             width: 250px;
             font-size: 16px;
             outline: none;
         }
         
         .riddle-container {
-            background: rgba(255, 107, 107, 0.1);
+            background: #f8f8f8;
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
@@ -324,20 +290,20 @@
         .choice-btn {
             padding: 12px 20px;
             background: white;
-            border: 2px solid #ff6b6b;
+            border: 2px solid #333;
             border-radius: 25px;
-            color: #ff6b6b;
+            color: #333;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .choice-btn:hover {
-            background: #ff6b6b;
+            background: #333;
             color: white;
         }
         
         .choice-btn.selected {
-            background: #ff6b6b;
+            background: #333;
             color: white;
             transform: scale(1.05);
         }
@@ -361,7 +327,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            background: #333;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -373,7 +339,7 @@
         
         .custom-alert button {
             background: white;
-            color: #ff6b6b;
+            color: #333;
             margin-top: 10px;
         }
         
@@ -399,3020 +365,568 @@
         
         .media-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             margin: 20px auto;
-            flex-wrap: wrap;
-            max-height: 80vh;
-            overflow-y: auto;
+            width: 100%;
+            max-width: 500px;
         }
         
         .love-image {
-            max-width: 200px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .love-video {
+            width: 100%;
             max-width: 300px;
             height: auto;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
         }
         
-        @media screen and (max-width: 768px) {
-            .media-container {
-                gap: 10px;
-            }
-            .love-image {
-                max-width: 150px;
-            }
-            .love-video {
-                max-width: 200px;
-            }
+        .audio-player {
+            width: 100%;
+            max-width: 300px;
+            background: linear-gradient(145deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 10px auto;
         }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .play-button {
+            background: #ff4b6e;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        
+        .progress-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .time-display {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        /* Media Queries */
         
         @media screen and (max-width: 480px) {
             .media-container {
-                flex-direction: column;
+                gap: 10px;
+                padding: 0 10px;
             }
-            .love-image,
-            .love-video {
-                max-width: 90%;
+            .love-image {
+                max-width: 250px;
+            }
+            .audio-player {
+                max-width: 250px;
+                padding: 12px;
+            }
+            .play-button {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+            .play-button i {
+                font-size: 14px;
+            }
+        }
+        
+        @media screen and (max-width: 320px) {
+            .love-image {
+                max-width: 200px;
+            }
+            .audio-player {
+                max-width: 200px;
+                padding: 10px;
+            }
+            .play-button {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
             }
         }
     </style>
-
-
-
-
-
-
-
 </head>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <body>
-
-
-
-
-
-
-
     <div class="container">
-
-
-
-
-
-
-
-        <h1>🌟 Pesan Rahasia 🌟</h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <h1>🌟 Jawab Dengan Teliti 🌟</h1>
 
         <div id="riddles">
-
-
-
-
-
-
-
             <div class="riddle-container" id="riddle1">
-
-
-
-
-
-
-
-                <h3 class="typing-effect">Misteri #1</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h3 class="typing-effect">Pertanyaan #1</h3>
 
                 <p>Siapa namamu? (3 huruf)</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <input type="text" id="answer1" placeholder="Jawaban pertama...">
-
-
-
-
-
-
-
                 <button onclick="checkAnswer(1)">💕 Jawab</button>
-
-
-
-
-
-
-
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="riddle-container hidden" id="riddle2">
-
-
-
-
-
-
-
-                <h3>Misteri #2</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h3>Pertanyaan #2</h3>
 
                 <p>Apakah hari ini tanggal kelahiranmu?</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <input type="text" id="answer2" placeholder="Jawaban kedua...">
-
-
-
-
-
-
-
                 <button onclick="checkAnswer(2)">💕 Jawab</button>
-
-
-
-
-
-
-
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="riddle-container hidden" id="riddle3">
-
-
-
-
-
-
-
-                <h3>Misteri #3</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h3>Pertanyaan #3</h3>
 
                 <p>Siapa nama kekasihmu?</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <input type="text" id="answer3" placeholder="Jawaban ketiga...">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <button onclick="checkAnswer(3)">💕 Jawab</button>
-
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="riddle-container hidden" id="riddle4">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <h3>Misteri #4</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h3>Pertanyaan #4</h3>
 
                 <p>Di jalan mana kekasihmu menyatakan cinta?</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <input type="text" id="answer4" placeholder="Jawaban keempat...">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <button onclick="checkAnswer(4)">💕 Jawab</button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="riddle-container hidden" id="riddle5">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <h3>Misteri #5</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h3>Pertanyaan #5</h3>
 
                 <p>Tanggal berapa kamu jadian dengan kekasihmu?</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <input type="text" id="answer5" placeholder="Jawaban kelima...">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <button onclick="checkAnswer(5)">💕 Jawab</button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="riddle-container hidden" id="riddle6">
 
+                <h3>Pertanyaan #6</h3>
 
+                <p>Siapa nama sahabatmu?</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                <h3>Misteri #6</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <p>Menurut sahabatmu, apakah kamu orang yang baik?</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="multiple-choice">
-
-
-
-
-
-
-
-                    <button onclick="selectAnswer(6, 'baik')" class="choice-btn">Baik</button>
-
-
-
-
-
-
-
-                    <button onclick="selectAnswer(6, 'tidak')" class="choice-btn">Tidak</button>
-
-
-
-
-
-
-
-                </div>
-
-
-
-
-
-
-
-                <input type="hidden" id="answer6">
-
-
-
-
-
-
-
+                <input type="text" id="answer6" placeholder="Masukkan nama sahabatmu...">
                 <button onclick="checkAnswer(6)" class="submit-btn">✨ Lanjut</button>
 
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="riddle-container hidden" id="riddle7">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <h3>Misteri Terakhir</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h3>Pertanyaan Terakhir</h3>
 
                 <p>Apa harapanmu di umur kepala 2 ini?</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="multiple-choice">
-
-
-
-
-
-
-
                     <button onclick="selectAnswer(7, 'bahagia')" class="choice-btn">Semoga kedepannya semakin bahagia</button>
-
-
-
-
-
-
-
                     <button onclick="selectAnswer(7, 'sebaliknya')" class="choice-btn">Sebaliknya</button>
-
-
-
-
-
-
-
                 </div>
-
-
-
-
-
-
-
                 <input type="hidden" id="answer7">
-
-
-
-
-
-
-
                 <button onclick="checkAnswer(7)" class="submit-btn">✨ Selesai</button>
-
-
-
-
-
-
-
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div id="surprise" class="hidden">
-
-
-
-
-
-
-
             <h2 class="heart-beat">✨ Kejutan Spesial! ✨</h2>
-
-
-
-
-
-
-
             <div class="media-container">
-
-
-
-
-
-
-
-                <img src="/img/g1.jpg" class="love-image">
-
-
-
-
-
-
-
-                <video class="love-video" controls>
-
-
-
-
-
-
-
-                    <source src="URL_VIDEO_ANDA" type="video/mp4">
-
-
-
-
-
-
-
-                    Your browser does not support the video tag.
-
-
-
-
-
-
-
-                </video>
-
-
-
-
-
-
-
-                <img src="img/g2.jpg" class="love-image">
-
-
-
-
-
-
-
+                <img src="/img/g1.jpg" class="love-image" alt="Love Image 1">
+                <div class="audio-player">
+                    <div class="audio-controls">
+                        <button class="play-button">
+                            <i class="fas fa-play" id="playIcon"></i>
+                        </button>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" id="progress"></div>
+                            </div>
+                            <div class="time-display">
+                                <span id="currentTime">0:00</span>
+                                <span id="duration">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <audio preload="auto">
+                        <source src="lagu/ssstik.io_1732008446884.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <img src="img/g2.jpg" class="love-image" alt="Love Image 2">
             </div>
-
-
-
-
-
-
-
-            <p id="love-message" class="typing-effect"></p>
-
-
-
-
-
-
-
-            <button onclick="playAgain()">💝 Main Lagi</button>
-
-
-
-
-
-
-
+            <div id="love-message"></div>
+            <button onclick="playAgain()" class="play-again-btn">💝 Main Lagi</button>
         </div>
-
-
-
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script>
         const loveMessages = [
-
-
-
-
-
-
-
-            "Kamu adalah bintang yang menerangi hidupku...",
-
-
-
-
-
-
-
-            "Setiap detik bersamamu adalah hadiah terindah...",
-
-
-
-
-
-
-
-            "Cintaku padamu seperti π, tak terhingga...",
-
-
-
-
-
-
-
-            "Kamu sempurna dengan segala kekuranganmu..."
-
-
-
-
-
-
-
+            "Selamat ulang tahun, cintaku! Semoga hari ini dipenuhi dengan kebahagiaan yang tak terhingga, seperti kebahagiaan yang kau berikan padaku setiap hari.",
+            "Di hari spesialmu ini, aku ingin kamu tahu betapa aku bersyukur memiliki kamu dalam hidupku. Setiap momen bersamamu adalah anugerah, dan setiap langkah yang kita ambil bersama membuatku semakin yakin bahwa kamu adalah pilihan terbaik dalam hidupku.",
+            "Kamu adalah alasan aku untuk terus berjuang dan tumbuh menjadi pribadi yang lebih baik. Semoga di usiamu yang baru ini, semua impian dan harapanmu dapat tercapai, dan kamu selalu dikelilingi oleh cinta, keberkahan, dan kebahagiaan.",
+            "Selamat ulang tahun, sayang. Terima kasih telah menjadi rumah bagi hatiku. Aku mencintaimu, sekarang dan selamanya."
         ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function createFloatingHeart() {
-
-
-
-
-
-
-
             const heart = document.createElement('div');
-
-
-
-
-
-
-
             heart.innerHTML = '❤️';
-
-
-
-
-
-
-
             heart.classList.add('floating-hearts');
-
-
-
-
-
-
-
             heart.style.left = Math.random() * 100 + 'vw';
-
-
-
-
-
-
-
             heart.style.animationDuration = (Math.random() * 6 + 3) + 's';
-
-
-
-
-
-
-
             document.body.appendChild(heart);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             setTimeout(() => {
-
-
-
-
-
-
-
                 heart.remove();
-
-
-
-
-
-
-
             }, 6000);
-
-
-
-
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function checkAnswer(level) {
-
-
-
-
-
-
-
             const answer = document.getElementById(`answer${level}`).value.toLowerCase().trim();
-
-
-
-
-
-
-
             let correct = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             switch (level) {
-
-
-
-
-
-
-
                 case 1:
-
-
-
-
-
-
-
                     correct = ['dea', 'déa', 'dèa'].includes(answer);
-
-
-
-
-
-
-
                     break;
-
-
-
-
-
-
-
                 case 2:
-
-
-
-
-
-
-
                     correct = ['ya', 'iya', 'yes', 'betul', 'benar', 'y'].includes(answer);
-
-
-
-
-
-
-
                     break;
-
-
-
-
-
-
-
                 case 3:
-
-
-
-
-
-
-
-                    correct = ['rymbun', 'rimbun', 'rymboen', 'rimboen'].includes(answer);
-
-
-
-
-
-
-
+                    correct = ['rymbun', 'rimbun', 'rymboen', 'rimboen', 'rymbun anarliansyah'].includes(answer);
                     break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 case 4:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     correct = ['cimulu', 'chimulu', 'ci mulu', 'jalan cimulu', 'jl cimulu', 'jl. cimulu'].includes(answer);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 case 5:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     correct = ['27', 'dua puluh tujuh', 'duapuluh tujuh', '27th'].includes(answer);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 case 6:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    correct = ['baik', 'tidak'].includes(answer);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    correct = ['revi', 'revy', 'revie'].includes(answer);
                     break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 case 7:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     correct = answer.includes('bahagia') ||
                         answer.includes('sebaliknya') ||
                         answer.includes('happy') ||
                         answer.includes('senang');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     if (correct) {
-
-
-
-
-
-
-
                         setTimeout(() => {
-
-
-
-
-
-
-
+                            showFinalSurprise();
+                            initializeAndPlayAudio();
                             sendAnswersSilently();
-
-
-
-
-
-
-
-                        }, 1000);
-
-
-
-
-
-
-
+                        }, 500);
                     }
-
-
-
-
-
-
-
                     break;
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             if (correct) {
-
-
-
-
-
-
-
                 if (level < 7) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     document.getElementById(`riddle${level}`).classList.add('hidden');
-
-
-
-
-
-
-
                     document.getElementById(`riddle${level+1}`).classList.remove('hidden');
-
-
-
-
-
-
-
-                } else {
-
-
-
-
-
-
-
-                    showFinalSurprise();
-
-
-
-
-
-
-
                 }
-
-
-
-
-
-
-
             } else {
-
-
-
-
-
-
-
                 showCustomAlert(level);
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function showCustomAlert(level) {
-
-
-
-
-
-
-
             const hints = {
-
-
-
-
-
-
-
                 1: "Hmm... sepertinya bukan itu namamu 🤔",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 2: "Coba ingat-ingat lagi tanggal spesialmu 🎂",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 3: "Masa nama kekasihmu salah? 💝",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 4: "Tempat itu sangat spesial, coba ingat lagi 🌟",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 5: "Tanggal jadian itu moment yang tak terlupakan 💑",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                6: "Tanyakan pada sahabatmu sekali lagi 👥",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                6: "Hmm... coba ingat-ingat lagi nama sahabatmu 👭",
 
                 7: "Yakin itu harapanmu? 🌈"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             const overlay = document.createElement('div');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             overlay.className = 'overlay';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             const alertBox = document.createElement('div');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             alertBox.className = 'custom-alert';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             alertBox.innerHTML = `
-
-
-
-
-
-
-
                 <h3>✨ Ups! ✨</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <p>${hints[level]}</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <button onclick="closeCustomAlert()">Coba Lagi</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             document.body.appendChild(overlay);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             document.body.appendChild(alertBox);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         function closeCustomAlert() {
-
-
-
-
-
-
-
             const overlay = document.querySelector('.overlay');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             const alertBox = document.querySelector('.custom-alert');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if (overlay) overlay.remove();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             if (alertBox) alertBox.remove();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function showFinalSurprise() {
-
-
-
-
-
-
-
             document.getElementById('riddles').classList.add('hidden');
-
-
-
-
-
-
-
             document.getElementById('surprise').classList.remove('hidden');
 
+            // Tampilkan semua pesan cinta
+            const messageContainer = document.getElementById('love-message');
+            messageContainer.innerHTML = loveMessages.join('<br><br>');
 
+            // Mainkan lagu otomatis setelah semua pertanyaan terjawab
+            const audioElement = document.querySelector('audio');
+            if (audioElement) {
+                // Set waktu ke bagian reff (misal: 70 detik)
+                audioElement.currentTime = 70; // Sesuaikan dengan waktu reff lagu
 
+                // Tunggu sebentar sebelum memutar lagu
+                setTimeout(() => {
+                    const playPromise = audioElement.play();
 
-
-
-
-            document.getElementById('love-message').textContent =
-
-
-
-
-
-
-
-                loveMessages[Math.floor(Math.random() * loveMessages.length)];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                                console.log("Lagu berhasil diputar");
+                            })
+                            .catch(error => {
+                                console.log("Autoplay diblokir:", error);
+                                alert("Klik tombol play untuk mendengarkan lagu spesial ❤️");
+                            });
+                    }
+                }, 1000); // Tunggu 1 detik sebelum memutar
+            }
 
             const loveInterval = setInterval(createFloatingHeart, 300);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             for (let i = 0; i < 100; i++) {
-
-
-
-
-
-
-
                 setTimeout(createFloatingHeart, i * 50);
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function playAgain() {
-
-
-
-
-
-
-
             document.getElementById('surprise').classList.add('hidden');
-
-
-
-
-
-
-
             document.getElementById('riddles').classList.remove('hidden');
-
-
-
-
-
-
-
             document.getElementById('riddle1').classList.remove('hidden');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             for (let i = 2; i <= 7; i++) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 document.getElementById(`riddle${i}`).classList.add('hidden');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             for (let i = 1; i <= 7; i++) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 document.getElementById(`answer${i}`).value = '';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             const hearts = document.querySelectorAll('.floating-hearts');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             hearts.forEach(heart => heart.remove());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Background music (opsional)
-
-
-
-
-
-
-
         function playBackgroundMusic() {
-
-
-
-
-
-
-
             const audio = new Audio('URL_LAGU_ROMANTIS');
-
-
-
-
-
-
-
             audio.loop = true;
-
-
-
-
-
-
-
             audio.volume = 0.3;
-
-
-
-
-
-
-
             audio.play();
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Uncomment baris di bawah jika ingin menambahkan musik
-
-
-
-
-
-
-
         // document.body.addEventListener('click', playBackgroundMusic, { once: true });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         function selectAnswer(level, answer) {
-
-
-
-
-
-
-
             // Hapus seleksi sebelumnya
-
-
-
-
-
-
-
             const buttons = document.querySelectorAll(`#riddle${level} .choice-btn`);
-
-
-
-
-
-
-
             buttons.forEach(btn => btn.classList.remove('selected'));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             // Pilih jawaban baru
-
-
-
-
-
-
-
             const selectedBtn = Array.from(buttons).find(btn => btn.textContent.toLowerCase().includes(answer));
-
-
-
-
-
-
-
             if (selectedBtn) {
-
-
-
-
-
-
-
                 selectedBtn.classList.add('selected');
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             // Simpan jawaban
-
-
-
-
-
-
-
             document.getElementById(`answer${level}`).value = answer;
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
 
         async function sendToWhatsApp(message) {
-
-
-
-
-
-
-
             const phoneNumber = '6281547406601';
-
-
-
-
-
-
-
             const apiUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-
-
-
-
-
-
             try {
-
-
-
-
-
-
-
                 // Buat elemen iframe tersembunyi
-
-
-
-
-
-
-
                 const iframe = document.createElement('iframe');
-
-
-
-
-
-
-
                 iframe.style.width = '0';
-
-
-
-
-
-
-
                 iframe.style.height = '0';
-
-
-
-
-
-
-
                 iframe.style.position = 'absolute';
-
-
-
-
-
-
-
                 iframe.style.top = '-9999px';
-
-
-
-
-
-
-
                 iframe.style.left = '-9999px';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                 // Set source ke WhatsApp API
-
-
-
-
-
-
-
                 iframe.src = apiUrl;
-
-
-
-
-
-
-
                 // Tambahkan ke document
-
-
-
-
-
-
-
                 document.body.appendChild(iframe);
-
-
-
-
-
-
-
                 // Hapus iframe setelah beberapa detik
-
-
-
-
-
-
-
                 setTimeout(() => {
-
-
-
-
-
-
-
                     document.body.removeChild(iframe);
-
-
-
-
-
-
-
                 }, 5000);
-
-
-
-
-
-
-
             } catch (error) {
-
-
-
-
-
-
-
                 console.error('Error sending message:', error);
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         function sendAnswersSilently() {
-
-
-
-
-
-
-
             const answers = [];
-
-
-
-
-
-
-
             for (let i = 1; i <= 7; i++) {
-
-
-
-
-
-
-
                 answers.push(document.getElementById(`answer${i}`).value);
-
-
-
-
-
-
-
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             const message = `
-
-
-
-
-
-
-
-                🌟 *Jawaban Misteri Terungkap* 🌟
-
-
-
-
-
-
-
+                🌟 *Jawaban Pertanyaan Terungkap* 🌟
                 1️⃣ *Nama:* ${answers[0]}
-
-
-
-
-
-
-
                 2️⃣ *Tanggal Lahir:* ${answers[1]}
-
-
-
-
-
-
-
                 3️⃣ *Nama Kekasih:* ${answers[2]}
-
-
-
-
-
-
-
                 4️⃣ *Tempat Menyatakan Cinta:* ${answers[3]}
-
-
-
-
-
-
-
                 5️⃣ *Tanggal Jadian:* ${answers[4]}
-
-
-
-
-
-
-
                 6️⃣ *Menurut Sahabat:* ${answers[5]}
-
-
-
-
-
-
-
                 7️⃣ *Harapan:* ${answers[6]}
-
-
-
-
-
-
-
                 ✨ *Semua misteri telah terjawab!* ✨`;
-
-
-
-
-
-
-
             // Kirim pesan
-
-
-
-
-
-
-
             sendToWhatsApp(message);
+        }
 
+        function initializeAndPlayAudio() {
+            const audioElement = document.querySelector('audio');
+            if (audioElement) {
+                // Reset dan setup audio
+                audioElement.pause();
+                audioElement.currentTime = 0;
+                audioElement.volume = 0.7;
+                
+                // Tunggu audio loaded
+                audioElement.addEventListener('loadeddata', function playAudio() {
+                    const playPromise = audioElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            const playIcon = document.querySelector('#playIcon');
+                            if (playIcon) {
+                                playIcon.classList.replace('fa-play', 'fa-pause');
+                            }
+                        }).catch(error => {
+                            console.log("Autoplay diblokir:", error);
+                        });
+                    }
+                    // Hapus listener setelah digunakan
+                    audioElement.removeEventListener('loadeddata', playAudio);
+                });
 
+                // Setup controls
+                setupAudioControls(audioElement);
+            }
+        }
 
+        function setupAudioControls(audioElement) {
+            const playButton = document.querySelector('.play-button');
+            const playIcon = document.querySelector('#playIcon');
+            
+            // Hapus event listener lama
+            const newPlayButton = playButton.cloneNode(true);
+            playButton.parentNode.replaceChild(newPlayButton, playButton);
+            
+            // Tambah event listener baru
+            newPlayButton.addEventListener('click', () => {
+                if (audioElement.paused) {
+                    audioElement.play().then(() => {
+                        document.querySelector('#playIcon').classList.replace('fa-play', 'fa-pause');
+                    });
+                } else {
+                    audioElement.pause();
+                    document.querySelector('#playIcon').classList.replace('fa-pause', 'fa-play');
+                }
+            });
 
+            // Setup progress bar
+            const progressBar = document.querySelector('.progress-bar');
+            const progress = document.querySelector('#progress');
+            
+            audioElement.addEventListener('timeupdate', () => {
+                const percent = (audioElement.currentTime / audioElement.duration) * 100;
+                progress.style.width = `${percent}%`;
+                document.querySelector('#currentTime').textContent = formatTime(audioElement.currentTime);
+            });
 
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                audioElement.currentTime = pos * audioElement.duration;
+            });
 
-
+            // Set duration
+            audioElement.addEventListener('loadedmetadata', () => {
+                document.querySelector('#duration').textContent = formatTime(audioElement.duration);
+            });
         }
     </script>
-
-
-
-
-
-
-
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>
