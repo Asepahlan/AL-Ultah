@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Kado</title>
+    <title>HBD</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -488,7 +488,7 @@
                 <p>Siapa namamu? (3 huruf)</p>
 
                 <input type="text" id="answer1" placeholder="Jawaban pertama...">
-                <button onclick="checkAnswer(1)">💕 Jawab</button>
+                <button onclick="checkAnswer(1)">✨ Jawab</button>
             </div>
 
             <div class="riddle-container hidden" id="riddle2">
@@ -497,7 +497,7 @@
                 <p>Apakah hari ini tanggal kelahiranmu?</p>
 
                 <input type="text" id="answer2" placeholder="Jawaban kedua...">
-                <button onclick="checkAnswer(2)">💕 Jawab</button>
+                <button onclick="checkAnswer(2)">✨ Jawab</button>
             </div>
 
             <div class="riddle-container hidden" id="riddle3">
@@ -507,7 +507,7 @@
 
                 <input type="text" id="answer3" placeholder="Jawaban ketiga...">
 
-                <button onclick="checkAnswer(3)">💕 Jawab</button>
+                <button onclick="checkAnswer(3)">✨ Jawab</button>
             </div>
 
             <div class="riddle-container hidden" id="riddle4">
@@ -518,7 +518,7 @@
 
                 <input type="text" id="answer4" placeholder="Jawaban keempat...">
 
-                <button onclick="checkAnswer(4)">💕 Jawab</button>
+                <button onclick="checkAnswer(4)">✨ Jawab</button>
 
             </div>
 
@@ -530,7 +530,7 @@
 
                 <input type="text" id="answer5" placeholder="Jawaban kelima...">
 
-                <button onclick="checkAnswer(5)">💕 Jawab</button>
+                <button onclick="checkAnswer(5)">✨ Jawab</button>
 
             </div>
 
@@ -862,7 +862,7 @@
                 audioElement.pause();
                 audioElement.currentTime = 0;
                 audioElement.volume = 0.7;
-                
+
                 // Tunggu audio loaded
                 audioElement.addEventListener('loadeddata', function playAudio() {
                     const playPromise = audioElement.play();
@@ -888,11 +888,11 @@
         function setupAudioControls(audioElement) {
             const playButton = document.querySelector('.play-button');
             const playIcon = document.querySelector('#playIcon');
-            
+
             // Hapus event listener lama
             const newPlayButton = playButton.cloneNode(true);
             playButton.parentNode.replaceChild(newPlayButton, playButton);
-            
+
             // Tambah event listener baru
             newPlayButton.addEventListener('click', () => {
                 if (audioElement.paused) {
@@ -908,7 +908,7 @@
             // Setup progress bar
             const progressBar = document.querySelector('.progress-bar');
             const progress = document.querySelector('#progress');
-            
+
             audioElement.addEventListener('timeupdate', () => {
                 const percent = (audioElement.currentTime / audioElement.duration) * 100;
                 progress.style.width = `${percent}%`;
